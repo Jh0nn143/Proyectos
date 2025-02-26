@@ -4,6 +4,7 @@ import os
 import platform
 # Aerolinea LASER - Proyecto de Programacion I
 # Jose Antonio Velasquez C.I: 31.571.901
+# Jhonny Ferrer C.I:31.257.319
 
 def limpiar_consola():
     sistema = platform.system()
