@@ -1,0 +1,80 @@
+INICIO
+    IMPORTAR os, platform
+
+    DEFINIR variables globales para totales de boletos, clases, tipos, rutas y servicios
+
+    FUNCIÓN limpiar_consola():
+        SI sistema es Windows:
+            EJECUTAR comando cls
+        SINO:
+            EJECUTAR comando clear
+
+    FUNCIÓN obtener_entero_valido(mensaje, minimo):
+        MIENTRAS verdadero:
+            INTENTAR
+                valor = ENTERO(ENTRADA(mensaje))
+                SI valor >= minimo:
+                    RETORNAR valor
+                SINO:
+                    IMPRIMIR error
+            EXCEPCIÓN:
+                IMPRIMIR error
+
+    FUNCIÓN seleccionar_ruta_nacional():
+        MOSTRAR opciones de rutas nacionales
+        OBTENER opción válida (1-12)
+        ASIGNAR precio y nombre de ruta según opción
+        RETORNAR precio_base y ruta
+
+    FUNCIÓN seleccionar_ruta_internacional():
+        MOSTRAR destinos internacionales disponibles
+        OBTENER destino válido
+        RETORNAR ruta internacional
+
+    FUNCIÓN aplicar_clase(precio_base, clase):
+        SI clase es 1:
+            RETORNAR precio_base * 2
+        SINO SI clase es 2:
+            RETORNAR precio_base * 1.5
+        SINO:
+            RETORNAR precio_base
+
+    FUNCIÓN validar_edad_con_acompanante():
+        OBTENER edad del pasajero
+        SI edad < 18:
+            SOLICITAR número de adultos en la compra
+            SI no hay adultos:
+                IMPRIMIR error
+        RETORNAR edad
+
+    FUNCIÓN validar_nombre(mensaje):
+        MIENTRAS verdadero:
+            nombre = ENTRADA(mensaje)
+            SI nombre contiene solo letras y espacios:
+                RETORNAR nombre
+            SINO:
+                IMPRIMIR error
+
+    FUNCIÓN procesar_boleto():
+        OBTENER nombre, cédula, edad, clase, tipo de boleto
+        SI tipo es nacional:
+            OBTENER ruta y precio base
+        SINO:
+            OBTENER ruta internacional y precio base
+        APLICAR descuentos por edad
+        REGISTRAR servicios adicionales
+        ACTUALIZAR totales globales
+        PROCESAR pago y calcular vuelto
+
+    FUNCIÓN mostrar_reporte():
+        IMPRIMIR totales de boletos, ingresos por clase, tipo, rutas y servicios
+
+    FUNCIÓN main():
+        MIENTRAS verdadero:
+            LIMPIAR consola
+            MOSTRAR menú principal
+            OPCIONES:
+                1. Comprar boletos
+                2. Ver reporte
+                3. Salir
+FIN
