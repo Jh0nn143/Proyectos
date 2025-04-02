@@ -1,0 +1,119 @@
+INICIO 
+    DEFINIR CONSTANTES:
+        PRECIOS: Diccionario con tipos de habitacion y sus precios
+        ARCHIVOS: Diccionario con nombres de archivos para cada tipo de reserva
+
+    FUNCION limpiar_pantalla()
+        Ejecutar comando de sistema para limpiar pantalla
+
+    FUNCION presionar_continuar()
+        Esperar entrada del usuario para continuar
+
+    FUNCION validar_numero(mensaje)
+        REPETIR
+            Solicitar entrada al usuario
+            SI entrada es numerica:
+                RETORNAR numero
+            MOSTRAR mensaje de error
+
+    FUNCION validar_email(mensaje)
+        REPETIR
+            Solicitar email
+            SI coincide con patron de email ve:
+                RETORNAR email
+            MOSTRAR mensaje de error
+
+    FUNCION cargar_registros(tipo)
+        INTENTAR leer archivo correspondiente al tipo
+        CONVERTIR contenido en lista de diccionarios
+        RETORNAR registros
+
+    FUNCION guardar_registros(tipo, registros)
+        ESCRIBIR en archivo correspondiente los registros formateados
+
+    FUNCION capturar_datos_persona(num_persona)
+        SOLICITAR datos personales con validaciones
+        RETORNAR diccionario con datos
+
+    FUNCION registrar_acompaniado()
+        CAPTURAR datos de cliente principal y acompañante
+        RETORNAR registro combinado
+
+    FUNCION registrar_grupo_familia()
+        SOLICITAR cantidad de adultos y sus datos
+        SI tiene hijos:
+            SOLICITAR datos de cada hijo
+        RETORNAR registro completo
+
+    FUNCION mostrar_resumen(registro, tipo, total)
+        MOSTRAR encabezado con fecha y tipo
+        MOSTRAR datos principales del registro
+        MOSTRAR total a pagar
+
+    FUNCION menu_post_registro(tipo, registros, current_index)
+        INDICE = current_index
+        MIENTRAS Verdadero:
+            MOSTRAR opciones:
+                1. Ver anterior
+                2. Ver siguiente
+                3. Buscar
+                4. Añadir me              5. Modificar
+                6. Salir
+            
+            SEGUN opcion:
+                CASO 1:
+                    SI indice > 0:
+                        Decrementar indice
+                        Mostrar registro anterior
+                CASO 2:
+                    SI indice < total registros-1:
+                        Incrementar indice
+                        Mostrar registro siguiente
+                CASO 3:
+                    Ejecutar busqueda
+                CASO 4:
+                    RETORNAR Verdadero (continuar)
+                CASO 5:
+                    Modificar registro actual
+                CASO 6:
+                    RETORNAR Falso (terminar)
+
+    FUNCION buscar_cliente(tipo)
+        SOLICITAR termino de busqueda
+        FILTRAR registros que coincidan
+        MOSTRAR resultados
+
+    FUNCION modificar_registro(tipo, registros, index)
+        MOSTRAR campos disponibles
+        SOLICITAR campo a modificar
+        ACTUALIZAR valor
+        GUARDAR cambios
+
+    FUNCION main()
+        MIENTRAS Verdadero:
+            MOSTRAR menu principal:
+                1. Nuevo cliente
+                2. Salir
+            
+            SEGUN opcion:
+                CASO 1:
+                    MOSTRAR submenu de tipos de reserva
+                    SEGUN tipo seleccionado:
+                        Individual:
+                            CAPTURAR datos individuales
+                        Acompañado:
+                            CAPTURAR datos de pareja
+                        Grupo/Familia:
+                            CAPTURAR datos grupales
+                    
+                    SOLICITAR dias de estadia
+                    MOSTRAR opciones de habitacion
+                    CALCULAR total
+                    GUARDAR registro
+                    MOSTRAR resumen
+                    ENTRAR a menu post-registro
+                
+                CASO 2:
+                    SALIR del sistema
+
+FIN
